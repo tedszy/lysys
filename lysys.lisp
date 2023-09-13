@@ -60,6 +60,19 @@
   :rules ((X -> X F X - - X F X))
   :angle 45.0)
 
+(define-l-system fern
+  :axiom (X)
+  :rules ((F -> F F)
+	  (X -> F - pu pu X po + X po  + F pu + F X po - X))
+  :angle 22.5)
+
+(define-l-system fern2
+  :axiom (F)
+  :rules ((F -> F F + pu + F - F - F po - pu - F + F + F po))
+  :angle 22.5)
+
+
+
 (defun apply-substitution (sentence rules)
   (alexandria:flatten 
    (loop for u in sentence
@@ -89,7 +102,8 @@
   (format out "~a ~a~%" (first state) (second state)))
 
 (defun parse-sentence-and-write-path (sentence angle filename)
-  (let ((current-state (list 0.0 0.0 0.0)))
+  (let ((current-state (list 0.0 0.0 0.0))
+	(stack nil))
     (with-open-file
 	(out filename :direction :output :if-exists :supersede)
       (write-out out current-state)
@@ -103,7 +117,9 @@
 			      (sin (third current-state)))
 			(write-out out current-state)))
 		   (+ (incf (third current-state) angle))
-		   (- (decf (third current-state) angle))))))))
+		   (- (decf (third current-state) angle))
+		   (pu (push (copy-seq current-state) stack))
+		   (po (setf current-state (pop stack)))))))))
 
 (defun run-l-system (l-system n &optional (filename "path-vertices.dat"))
   (destructuring-bind (&key axiom rules angle)
