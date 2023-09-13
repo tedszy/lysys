@@ -8,4 +8,5 @@
   :depends-on (#:alexandria)
   :serial t
   :components ((:file "package")
+	       (:file "database")
                (:file "lysys")))
