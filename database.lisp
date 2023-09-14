@@ -63,23 +63,23 @@
 (define-l-system fern
   :axiom (X)
   :rules ((F -> F F)
-	  (X -> F - < < X > + X >  + F < + F X > - X))
+	  (X -> F - s< s< X s> + X s> + F s< + F X s> - X))
   :angle 22.5)
 
 (define-l-system fern2
   :axiom (F)
-  :rules ((F -> F F + < + F - F - F > - < - F + F + F >))
+  :rules ((F -> F F + s< + F - F - F s> - s< - F + F + F s>))
   :angle 22.5)
 
 (define-l-system thunder
   :axiom (F)
-  :rules ((F -> F < + F F > < - F F > F < - F > < + F > F))
+  :rules ((F -> F s< + F F s> s< - F F s> F s< - F s> s< + F s> F))
   :angle 35.0)
 
 (define-l-system sticks
   :axiom (X)
   :rules ((F -> F F)
-	  (X -> F < + X > F < - X > + X))
+	  (X -> F s< + X s> F s< - X s> + X))
   :angle 20.0)
 
 (define-l-system dragon
@@ -88,3 +88,9 @@
 	  (Y -> - F X - Y))
   :angle 90.0)
 
+(define-l-system lakes
+  :axiom (F + F + F + F)
+  :rules ((F -> F + F* - F F + F + F F + F F* + F F - F*
+	     + F F - F - F F - F F* - F F F)
+	  (F* -> F* F* F* F* F* F*))
+  :angle 90.0)
