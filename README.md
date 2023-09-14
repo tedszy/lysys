@@ -1,6 +1,6 @@
 # Lysys
 
-Wigh-resolution Lindenmayer systems with Common Lisp and Asymptote. 
+High-resolution Lindenmayer systems with Common Lisp and Asymptote. 
 
 ## Setup
 
@@ -16,22 +16,21 @@ in the Common Lisp listener. Lysys doesn't export any symbols, so it is easiest 
 
 ## Usage
 
-Browse the L-systems in ```database.lisp```. Pick one or write your own. For example, the symbol ```'pentadendrite``` contains the rules, axiom and angle to make the Pentadendrite fractal. Now compute a list of vertices (saved to file) to depth 4 by doing
+Browse the L-systems in ```database.lisp```. Pick one or write your own. For example, the symbol ```'pentadendrite``` contains the rules, axiom and angle to make the Pentadendrite fractal. Now compute a list of vertices (saved to a default file ```path-vertices.dat```) up to depth 4 by doing
 
 ```
 LYSYS> (compute-l-system 'pentadendrite 4)
 ```
 
-Then invoke Asymptote with
+Then invoke the Asymptote script with
 
 ```
 $ asy -V -fpdf render-path.asy
 ```
 
-which creates a PDF image of the L-system using 32k cycled colors.
+which creates a PDF image of the L-system data in ```path-vertices.dat```  using 32k cycled colors.
 
 ## Examples
 
 ![pentadendrite](https://github.com/tedszy/lysys/blob/main/gallery/pentadendrite.jpeg)
-
 
