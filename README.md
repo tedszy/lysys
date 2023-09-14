@@ -32,6 +32,6 @@ which creates a PDF image of the L-system using 32k cycled colors.
 
 ## Examples
 
-![pentadendrite](gallery/pentadenrite.jpeg)
+![pentadendrite](https://github.com/tedszy/lysys/blob/main/gallery/pentadendrite.jpeg)
 
 
