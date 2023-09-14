@@ -27,6 +27,10 @@
 ;; No need to keep the path vertices in memory.
 ;; Just write them out one by one.
 
+;; Current state needs to store pen-up/pen-down.
+;; When stack is popped we dont draw a line, so
+;; pop to pen-up. This should resolve stack problem.
+
 (defun write-out (out state joined)
   (format out "~a ~a ~a ~%" (first state) (second state) joined))
 
@@ -57,7 +61,8 @@
 		   (+ (incf (third current-state) angle))
 		   (- (decf (third current-state) angle))
 		   (s< (push (copy-seq current-state) stack))
-		   (s> (setf current-state (pop stack)))
+		   (s> (progn (setf current-state (pop stack))
+			      (write-out out current-state 0)))
 		   (r~ (incf (third current-state) 180.0))))
 	    finally (return k)))))
 
