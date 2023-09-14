@@ -25,7 +25,7 @@
 ;; + = increment current-state angle by angle.
 ;; - = decrement current-state angle by angle.
 ;; s< = push current state on stack.
-;; s< = pop state from stack, write vertex, do not draw edge.
+;; s> = pop state from stack, write vertex, do not draw edge.
 
 (define-l-system rings
   :axiom (F + F + F + F)
