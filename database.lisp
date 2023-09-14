@@ -6,7 +6,12 @@
 
 (defun deg-angle (deg) (* (/ pi 180.0) deg))
 
+;; Use this in the CL listener to get a list of
+;; available L-systems.
+
 (defparameter *l-system-db* nil)
+
+;; Use this to add your own L-systems.
 
 (defmacro define-l-system (sym &key axiom rules angle)
   `(progn (setf (symbol-plist ',sym)
@@ -14,6 +19,13 @@
 		      :rules ',rules
 		      :angle (deg-angle ,angle)))
 	  (pushnew ',sym *l-system-db*)))
+
+;; F = step forward, write vertex, draw edge.
+;; F* = step forward, write vertex, but do not draw edge.
+;; + = increment current-state angle by angle.
+;; - = decrement current-state angle by angle.
+;; s< = push current state on stack.
+;; s< = pop state from stack, write vertex, do not draw edge.
 
 (define-l-system rings
   :axiom (F + F + F + F)
@@ -57,22 +69,16 @@
 	  (Y -> X F - Y F - X))
   :angle 60.0)
 
-
 (define-l-system sierpinski-triangle2
   :axiom (F)
   :rules ((G -> F + G + F)
 	  (F -> G - F - G))
   :angle 60.0)
 
-
-(define-l-system pentadentrite
+(define-l-system pentadendrite
   :axiom (F - F - F - F - F)
   :rules ((F -> F - F - F + + F + F - F))
   :angle 72.0)
-
-
-
-
 
 (define-l-system hex-gosper
   :axiom (X F)
@@ -116,8 +122,6 @@
   :axiom (F + F + F + F)
   :rules ((F -> F F + F + F + F + F F))
   :angle 90.0)
-
-
 
 (define-l-system levy-curve
   :axiom (F)
