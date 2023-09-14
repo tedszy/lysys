@@ -98,11 +98,6 @@
 	     F X + Y F Y))
   :angle 90.0)
 
-(define-l-system sierpinski-square
-  :axiom (F + X F + F + X F)
-  :rules ((X -> X F - F + F - X F + F + X F - F + F - X))
-  :angle 90.0)
-
 (define-l-system frost
   :axiom (F + F + F + F)
   :rules ((F -> F F + F + + F + F))
